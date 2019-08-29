@@ -1,0 +1,35 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          version: 3.0.100-preview8-013656
+
+      - name: Build Site
+        run: ./build.ps1
+        shell: pwsh
+
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifacts.zip
+          path: artifacts/wwwroot.zip
+
+      - name: Publish To Azure
+        uses: azure/appservice-actions/webapp@master
+        with:
+          app-name: actions-cake-demo
+          package: artifacts/wwwroot.zip
+          publish-profile: ${{ secrets.azureWebAppPublishProfile }}
