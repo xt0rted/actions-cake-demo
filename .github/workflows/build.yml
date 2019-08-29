@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: artifacts.zip
-          path: artifacts/artifacts.zip
+          path: artifacts/wwwroot.zip
