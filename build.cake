@@ -10,7 +10,7 @@ var paths = new
 };
 
 Task("Restore")
-    .Does(() => NuGetRestore(paths.Solution));
+    .Does(() => DotNetCoreRestore(paths.Solution));
 
 Task("Compile")
     .IsDependentOn("Restore")
