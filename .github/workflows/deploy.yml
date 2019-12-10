@@ -1,8 +1,7 @@
 name: Build & Deploy
 
 on:
-  push:
-    branches: master
+  deployment
 
 jobs:
   build:
@@ -33,3 +32,13 @@ jobs:
           app-name: actions-cake-demo
           package: artifacts/wwwroot.zip
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+
+      - name: Finish Deployment
+        uses: bobheadxi/deployments@v0.1.0
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env_url: ${{ github.event.repository.homepage }}
+          deployment_id: ${{ github.event.deployment.id }}
+          status: ${{ job.status }}
