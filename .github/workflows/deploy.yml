@@ -27,7 +27,8 @@ jobs:
           path: artifacts/wwwroot.zip
 
       - name: Publish To Azure
-        uses: azure/appservice-actions/webapp@master
+        id: publish
+        uses: azure/webapps-deploy@v1
         with:
           app-name: actions-cake-demo
           package: artifacts/wwwroot.zip
@@ -39,6 +40,6 @@ jobs:
         with:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
-          env_url: ${{ github.event.repository.homepage }}
+          env_url: ${{ steps.publish.webapp-url }}
           deployment_id: ${{ github.event.deployment.id }}
           status: ${{ job.status }}
