@@ -40,6 +40,6 @@ jobs:
         with:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
-          env_url: ${{ steps.publish.webapp-url }}
+          env_url: ${{ steps.publish.outputs.webapp-url }}
           deployment_id: ${{ github.event.deployment.id }}
           status: ${{ job.status }}
