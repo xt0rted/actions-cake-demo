@@ -2,7 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div>
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>This is a sample project using GitHub Actions and Cake to build &amp; deploy a .NET Core site to Azure App Services.</p>
+</div>
+
+<div class="mt-5">
+    <h2>Deployment</h2>
+    <p>A deployment is started by using the command <code>/github deploy xt0rted/actions-cake-demo</code> in <a href="https://github.com/integrations/slack">Slack</a> which kicks off a <a href="https://developer.github.com/v3/repos/deployments/">GitHub Deployment</a>.</p>
+    <p>The <a href="https://github.com/xt0rted/actions-cake-demo/blob/master/.github/workflows/deploy.yml">deploy</a> workflow then runs which builds, packages, and deploys the site to Azure App Services.</p>
+    <p>Finally the result of the deploy is reported back to the GitHub Deployment which is shown both in Slack and under the <a href="https://github.com/xt0rted/actions-cake-demo/deployments">Deployments</a> section.</p>
 </div>
