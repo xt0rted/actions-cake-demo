@@ -26,6 +26,13 @@ jobs:
           name: artifacts.zip
           path: artifacts/wwwroot.zip
 
+      - name: Start Deployment
+        uses: bobheadxi/deployments@v0.4.0
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          deployment_id: ${{ github.event.deployment.id }}
+
       - name: Publish To Azure
         id: publish
         uses: azure/webapps-deploy@v1
@@ -35,7 +42,7 @@ jobs:
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
 
       - name: Finish Deployment
-        uses: bobheadxi/deployments@v0.2.0
+        uses: bobheadxi/deployments@v0.4.0
         if: always()
         with:
           step: finish
