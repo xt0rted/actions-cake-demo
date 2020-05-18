@@ -36,7 +36,7 @@ jobs:
 
       - name: Publish To Azure
         id: publish
-        uses: azure/webapps-deploy@v1
+        uses: azure/webapps-deploy@v2
         with:
           app-name: actions-cake-demo
           package: artifacts/wwwroot.zip
