@@ -39,6 +39,7 @@ jobs:
           app-name: actions-cake-demo
           package: artifacts/wwwroot.zip
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+          slot-name: staging
 
       - name: Finish Deployment
         uses: bobheadxi/deployments@v0.4.0
